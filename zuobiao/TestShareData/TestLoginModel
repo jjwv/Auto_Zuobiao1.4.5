@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<LoginTestData>
+    <Login001>
+        <userName>13691515688</userName>
+        <passWord>123456</passWord>
+        <expValue>c69160826</expValue>
+        <actValue>com.ruguoapp.jike:id/tv_username</actValue>
+    </Login001>
+    <Login002>
+        <userName>cuiwenhao@163.com</userName>
+        <passWord></passWord>
+        <expValue>hwq18034992335</expValue>
+        <actValue>com.ruguoapp.jike:id/tv_username</actValue>
+    </Login002>
+</LoginTestData>

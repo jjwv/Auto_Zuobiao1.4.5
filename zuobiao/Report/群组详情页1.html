@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>群组详情页测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.3"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 2ex;
+    margin-bottom: 3ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    /* width: 500px;*/
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 99%;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #74A474; }
+.failClass  { background-color: #FDD283; }
+.errorClass { background-color: #FF6600; }
+.passCase   { color: #6c6; }
+.failCase   { color: #FF6600; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+#div_base {
+            position:absolute;
+            top:0%;
+            left:5%;
+            right:5%;
+            width: auto;
+            height: auto;
+            margin: -15px 0 0 0;
+}
+</style>
+
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+<div id="div_base">
+
+<div class='page-header'>
+<h1>群组详情页测试报告</h1>
+<p class='attribute'><strong>开始时间:</strong> 2017-09-01 16:22:48</p>
+<p class='attribute'><strong>运行时长:</strong> 0:01:25.434755</p>
+<p class='attribute'><strong>状态:</strong> 失败 9</p>
+
+</div>
+<p class='description'>test1：群主或管理员更改群头性  (拍照和相册选择）test2:群主或管理员邀请成员   test3：群主或管理员移除成员  test4:群主及管理员修改群成员（我的名片)  test5:修改群聊名称   test6: 分享群二维码   test7:群公告   test8：更改自己的群名牌  test9:点击入群验证 聊天置顶及消息免打扰</p>
+
+
+
+<div class="btn-group btn-group-sm">
+<button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+<button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+<button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+</div>
+<p></p>
+<table id='result_table' class="table table-bordered">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>测试套件/测试用例</td>
+    <td>总数</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>查看</td>
+</tr>
+
+<tr class='failClass'>
+    <td>zuobiaoCase.Group_DadaModel.Group_DataModel</td>
+    <td>9</td>
+    <td>0</td>
+    <td>9</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',9)">详情</a></td>
+</tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        失败</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 20, in Group_head
+    __Group_head=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_head_iv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 113, in test_1
+    Group_Data().Group_head().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 23, in Group_head
+    "定位群头像失败"
+AssertionError: 定位群头像失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 20, in Group_head
+    __Group_head=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_head_iv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 113, in test_1
+    Group_Data().Group_head().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 23, in Group_head
+    "定位群头像失败"
+AssertionError: 定位群头像失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        失败</a>
+
+    <div id='div_ft1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.2: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 29, in Group_member
+    __Group_member = self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_member_tv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 134, in test_2
+    Group_Data().Group_member().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 32, in Group_member
+    "定位群成员失败"
+AssertionError: 定位群成员失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 29, in Group_member
+    __Group_member = self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_member_tv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 134, in test_2
+    Group_Data().Group_member().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 32, in Group_member
+    "定位群成员失败"
+AssertionError: 定位群成员失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.3')" >
+        失败</a>
+
+    <div id='div_ft1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.3: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 47, in Right
+    __Right=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/right")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 153, in test_3
+    Group_Data().Right().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 50, in Right
+    "定位完成按钮失败"
+AssertionError: 定位完成按钮失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 47, in Right
+    __Right=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/right")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 153, in test_3
+    Group_Data().Right().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 50, in Right
+    "定位完成按钮失败"
+AssertionError: 定位完成按钮失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.4')" >
+        失败</a>
+
+    <div id='div_ft1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.4: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 29, in Group_member
+    __Group_member = self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_member_tv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 177, in test_4
+    Group_Data().Group_member().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 32, in Group_member
+    "定位群成员失败"
+AssertionError: 定位群成员失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 29, in Group_member
+    __Group_member = self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_member_tv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 177, in test_4
+    Group_Data().Group_member().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 32, in Group_member
+    "定位群成员失败"
+AssertionError: 定位群成员失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_5</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.5')" >
+        失败</a>
+
+    <div id='div_ft1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.5: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 102, in Qlmc
+    __Qlmc=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_name_arrow_iv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 213, in test_5
+    Group_Data().Qlmc().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 105, in Qlmc
+    "定位群聊名称失败"
+AssertionError: 定位群聊名称失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 102, in Qlmc
+    __Qlmc=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_name_arrow_iv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 213, in test_5
+    Group_Data().Qlmc().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 105, in Qlmc
+    "定位群聊名称失败"
+AssertionError: 定位群聊名称失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_6</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.6')" >
+        失败</a>
+
+    <div id='div_ft1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.6: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 120, in Save_to_mobile
+    __Save_to_mobile=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/save_to_mobile_btn")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 237, in test_6
+    Group_Data().Save_to_mobile().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 123, in Save_to_mobile
+    "定位群二维码  保存到手机失败"
+AssertionError: 定位群二维码  保存到手机失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 120, in Save_to_mobile
+    __Save_to_mobile=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/save_to_mobile_btn")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 237, in test_6
+    Group_Data().Save_to_mobile().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 123, in Save_to_mobile
+    "定位群二维码  保存到手机失败"
+AssertionError: 定位群二维码  保存到手机失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.7' class='none'>
+    <td class='failCase'><div class='testcase'>test_7</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.7')" >
+        失败</a>
+
+    <div id='div_ft1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.7: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 137, in Group_notice
+    __Group_notice=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_notice_arrow_iv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 263, in test_7
+    Group_Data().Group_notice().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 140, in Group_notice
+    "定位群公告失败"
+AssertionError: 定位群公告失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 137, in Group_notice
+    __Group_notice=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_notice_arrow_iv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 263, in test_7
+    Group_Data().Group_notice().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 140, in Group_notice
+    "定位群公告失败"
+AssertionError: 定位群公告失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.8' class='none'>
+    <td class='failCase'><div class='testcase'>test_8</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.8')" >
+        失败</a>
+
+    <div id='div_ft1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.8: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 154, in Group_my_nickname
+    __Group_my_nickname=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_my_nickname_tv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 279, in test_8
+    Group_Data().Group_my_nickname().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 157, in Group_my_nickname
+    "定位群名片失败"
+AssertionError: 定位群名片失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 154, in Group_my_nickname
+    __Group_my_nickname=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_my_nickname_tv")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 279, in test_8
+    Group_Data().Group_my_nickname().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 157, in Group_my_nickname
+    "定位群名片失败"
+AssertionError: 定位群名片失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.9' class='none'>
+    <td class='failCase'><div class='testcase'>test_9</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.9')" >
+        失败</a>
+
+    <div id='div_ft1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.9: Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 172, in Group_validate
+    __Group_validate=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_validate_sb")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 294, in test_9
+    Group_Data().Group_validate().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 175, in Group_validate
+    "定位  入群验证失败"
+AssertionError: 定位  入群验证失败
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 172, in Group_validate
+    __Group_validate=self.driver.find_element_by_id("com.shixinyun.zuobiao:id/group_validate_sb")
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium-3.0.2-py3.5.egg/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shixin/zuobiao/zuobiaoCase/Group_DadaModel.py", line 294, in test_9
+    Group_Data().Group_validate().click()
+  File "/Users/shixin/zuobiao/CommonFunction/Group_Data.py", line 175, in Group_validate
+    "定位  入群验证失败"
+AssertionError: 定位  入群验证失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>总计</td>
+    <td>9</td>
+    <td>0</td>
+    <td>9</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</div>
+</body>
+</html>
